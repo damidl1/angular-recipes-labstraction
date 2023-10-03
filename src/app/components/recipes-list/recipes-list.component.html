@@ -1,1 +1,8 @@
-<p>recipes-list works!</p>
+<mat-grid-list cols="4">
+  <mat-grid-tile *ngFor="let rec of recipes">
+    <app-recipe-card [recipe]="rec"></app-recipe-card>
+  </mat-grid-tile>
+</mat-grid-list>
+
+
+
