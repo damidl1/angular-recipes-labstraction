@@ -6,5 +6,7 @@
   <span class="detail-text">{{recipe.description}}</span>
   <span class="detail-text">{{recipe.category | categoryToString}}</span>
   <span class="detail-text">{{recipe.createdAt | toHumanDate}}</span>
-  <button (click)="deleteRecipe()">Elimina ricetta</button>
+  <!-- <button mat-button color="primary" (click)="deleteRecipe()">Elimina ricetta</button> -->
+  <!-- <app-super-button></app-super-button> -->
+  <button appSuperButton>elimina la ricetta</button>
 </div>
