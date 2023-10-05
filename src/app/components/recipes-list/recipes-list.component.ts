@@ -5,6 +5,7 @@ import { RecipeCardComponent } from '../recipe-card/recipe-card.component';
 import { DishType, Recipe } from 'src/app/model/recipe';
 import {MatGridListModule} from '@angular/material/grid-list';
 import { CommunicationService } from 'src/app/services/communication.service';
+import { BreakpointObserver, BreakpointState, Breakpoints, LayoutModule } from '@angular/cdk/layout';
 
 
 @Component({
@@ -22,6 +23,7 @@ export class RecipesListComponent implements OnInit{
 
   allRecipes: Recipe[] = [];
   recipes: Recipe[] = [];
+  columns = 4;
 
   // @Input() set selectedCategory(value: number){
   //   if(value === -1){
@@ -35,9 +37,27 @@ export class RecipesListComponent implements OnInit{
   constructor(
     private dataServ: DataService,
     // private commService:CommunicationService
+    private bObserver: BreakpointObserver
   ){}
 
   ngOnInit(): void {
+    this.bObserver
+      .observe([
+        Breakpoints.HandsetPortrait,
+        Breakpoints.TabletPortrait,
+        Breakpoints.Medium
+      ])
+      .subscribe((state: BreakpointState) => {
+        if(state.matches === true){
+          if(state.breakpoints[Breakpoints.HandsetPortrait]){
+            this.columns = 1;
+          } else if (state.breakpoints[Breakpoints.TabletPortrait]){
+            this.columns = 2;
+          } else{
+            this.columns = 4
+          }
+        }
+      });
     // this.dataServ.getAllRecipes().subscribe(recs => {
     //   this.allRecipes = recs;
     //   this.recipes = recs;
