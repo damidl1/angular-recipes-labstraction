@@ -4,6 +4,17 @@
   </button>
   <span>Angular Recipes</span>
   <span class="spacer"></span>
+  <mat-form-field>
+    <mat-label>Filtra per categoria</mat-label>
+    <mat-select [(value)]="selectedCategory" (valueChange)="categoryChanged()">
+      <mat-option value="-1">
+        tutti
+      </mat-option>
+      <mat-option value="{{el[1]}}" *ngFor="let el of categories">
+        {{el[0]}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
   <button (click)="toggleTheme()" mat-icon-button>
     <mat-icon>favorite</mat-icon>
   </button>
